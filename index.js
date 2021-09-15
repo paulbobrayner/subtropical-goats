@@ -8,11 +8,29 @@ const reviews = [
   { id: 3, review: 'not so good', rating: '2' },
 ];
 
+function getStars(rating) {
+  // if index less than rating colour it yellow
+  const stars = ['1', '2', '3', '4', '5'];
+  return stars
+    .map((star, index) => {
+      const colour = index < rating ? '#FEE12B' : 'lightgrey';
+      return `<i class="fas fa-star" style="font-size: 28px; color: ${colour}; margin-right: 4px"></i>`;
+    })
+    .join('');
+}
+
+// loop over reviews and add to html
 const htmlReview = reviews
   .map((review) => {
-    return `<div style="display:flex"><i class="fas fa-star" style='font-size: 28px; color: lightgrey; margin: 5px 10px 0'></i><div style="margin-top:6px"><strong>${review.rating}</strong>, ${review.review}</div></div>`;
+    return `<div style="display:flex; margin-top:15px;">${getStars(
+      review.rating
+    )}<div style="margin:3px 10px"><strong>${review.rating}</strong>, ${
+      review.review
+    }</div></div>`;
   })
   .join('');
+
+console.log('HTML', htmlReview);
 
 document.getElementById('reviews').innerHTML = htmlReview;
 
@@ -33,5 +51,3 @@ function toggleColour(id) {
     state.rating--;
   }
 }
-
-// loop over stars

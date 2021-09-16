@@ -3,10 +3,17 @@ state = {
 };
 
 const reviews = [
-  { id: 1, review: 'pretty average', rating: '3' },
-  { id: 2, review: 'cool', rating: '4' },
-  { id: 3, review: 'not so good', rating: '2' },
+  { id: 1, review: 'pretty average', rating: 3 },
+  { id: 2, review: 'cool', rating: 4 },
+  { id: 3, review: 'not so good', rating: 2 },
 ];
+
+function getTotalRating() {
+  const total = reviews.reduce((a, b) => a + b.rating, 0);
+  const average = total / reviews.length;
+
+  return Math.round(average);
+}
 
 function getStars(rating) {
   // if index less than rating colour it yellow
@@ -30,15 +37,16 @@ const htmlReview = reviews
   })
   .join('');
 
-console.log('HTML', htmlReview);
+const overallRating = getStars(getTotalRating());
 
+document.getElementById('totalRating').innerHTML = overallRating;
 document.getElementById('reviews').innerHTML = htmlReview;
 
 function submitReview() {
   const review = document.getElementById('review-input').value;
   // POST rating / product id and review when submit
   // close modal also
-  console.log('rating', state.rating);
+  console.log('submit review', state.rating, review);
 }
 
 function toggleColour(id) {

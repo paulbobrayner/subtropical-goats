@@ -6,10 +6,11 @@
 </head>
 <body>
   <div style='justify-content:center; margin:120px auto; max-width: 450px'>
-    <div style='font-size:3.25em; font-weight:700'>Subtropical goats</div>
+    <div style='font-size:3.25em; font-weight:700' id="title"></div>
     <div style="display: flex; justify-content: space-between; margin-top:30px"> 
       <div style="display:flex">
         <div style="font-size: 2.25em">
+          <!-- add dynamic average rating here -->
           3.8	
         </div>
         <div id='totalRating' style="margin:13px 15px">
@@ -34,7 +35,7 @@
       <div style="padding:10px"class="modal-content">
         <div style="border:none"class="modal-header">
           <div  style="font-size:2em; font-weight: 700" id="exampleModalLabel">What's your rating?</div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeButton"></button>
         </div>
         <div class="modal-body">
           <div style="margin-bottom: 20px">Rating</div>
@@ -43,6 +44,7 @@
           <input style="border: none" placeholder='Start typing...' id='review-input' />
         </div>
         <div style="padding: 16px">
+          <!-- disable button until we have rating and review -->
           <button style="height: 34px; background: white; color: grey; border-radius: 4px; border: 1px solid grey; width: 135px; font-weight: 600; font-size: 14px; line-height:30px" type="button" onClick='submitReview()'>
             Submit review
           </button>

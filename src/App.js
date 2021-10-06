@@ -1,7 +1,9 @@
 import React from 'react';
+import { hot } from 'react-hot-loader';
+import ProductContainer from './App/product/ProductContainer';
 
 function App() {
-  return <div>this is my app</div>;
+  return <ProductContainer />;
 }
 
-export default App;
+export default hot(module)(App);

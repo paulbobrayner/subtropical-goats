@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import StarsComponent from '../Stars/StarsComponent';
 
 function ProductComponent({ setModalOpen }) {
   return (
@@ -7,8 +8,10 @@ function ProductComponent({ setModalOpen }) {
       <Title>Sub goats</Title>
       <Header>
         <AverageWrap>
-          <AverageScore>3.4</AverageScore>
-          <AverageStars></AverageStars>
+          <AverageScore>3.8</AverageScore>
+          <AverageStars>
+            <StarsComponent rating={3.8} />
+          </AverageStars>
         </AverageWrap>
         <ButtonWrap>
           <Button onClick={() => setModalOpen(true)}>Add review</Button>

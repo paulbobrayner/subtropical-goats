@@ -2,10 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import StarsComponent from '../Stars/StarsComponent';
 
-function ProductComponent({ setModalOpen }) {
+function ProductComponent({ setModalOpen, product }) {
+  if (!product) {
+    return <div>loading...</div>;
+  }
+
   return (
     <Wrap>
-      <Title>Sub goats</Title>
+      <Title>{product?.name}</Title>
       <Header>
         <AverageWrap>
           <AverageScore>3.8</AverageScore>

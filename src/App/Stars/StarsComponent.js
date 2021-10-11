@@ -13,13 +13,14 @@ function StarsComponent({ setReviewRating, reviewRating, rating }) {
     5: defaultColour,
   });
 
+  const wholeRating = Math.round(rating);
+
   useEffect(
     function initRating() {
-      if (rating) {
+      if (wholeRating) {
         const updatedColours = {};
         for (const [key, value] of Object.entries(starColours)) {
-          console.log('key', key, value);
-          if (key < rating) {
+          if (key <= wholeRating) {
             updatedColours[key] = '#FEE12B';
           } else {
             updatedColours[key] = 'lightgrey';

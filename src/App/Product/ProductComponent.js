@@ -1,10 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import StarsComponent from '../Stars/StarsComponent';
+import Review from './Review';
 
-function ProductComponent({ setModalOpen, product }) {
+function ProductComponent({ setModalOpen, product, reviews }) {
   if (!product) {
     return <div>loading...</div>;
+  }
+
+  function renderReviews() {
+    if (reviews && reviews.length > 0) {
+      return reviews.map((review) => {
+        return <Review review={review} />;
+      });
+    }
   }
 
   return (
@@ -23,6 +32,7 @@ function ProductComponent({ setModalOpen, product }) {
       </Header>
       <Line />
       <Subtitle>Reviews</Subtitle>
+      {renderReviews()}
     </Wrap>
   );
 }

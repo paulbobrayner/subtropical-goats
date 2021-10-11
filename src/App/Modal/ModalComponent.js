@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import StarsComponent from '../Stars/StarsComponent';
 
 function ModalComponent({
@@ -9,6 +9,7 @@ function ModalComponent({
   reviewRating,
   setReviewRating,
   handleReview,
+  submitReview,
 }) {
   return (
     <Modal show={modalOpen} onHide={() => setModalOpen(false)}>
@@ -26,9 +27,7 @@ function ModalComponent({
             onChange={(review) => handleReview(review)}
           />
         </div>
-        <SubmitButton onClick={() => setModalOpen(false)}>
-          Submit review
-        </SubmitButton>
+        <SubmitButton onClick={submitReview}>Submit review</SubmitButton>
       </ModalWrap>
     </Modal>
   );

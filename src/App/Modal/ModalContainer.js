@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import ModalComponent from './ModalComponent';
 import { postReview } from '../../api';
 
-function ModalContainer({
-  modalOpen,
-  setModalOpen,
-  productId,
-  setPostReviewSuccess,
-}) {
+function ModalContainer({ modalOpen, setModalOpen, productId, socket }) {
   const [review, setReview] = useState();
   const [reviewRating, setReviewRating] = useState(0);
 
@@ -23,13 +18,11 @@ function ModalContainer({
       review,
     };
 
-    console.log('submission', reviewSubmission);
-
     postReview(reviewSubmission).then((response) => {
       console.log('submitted', response);
       if (response.status === 201) {
         setModalOpen(false);
-        setPostReviewSuccess(true);
+        //socket.emit('submitReview', productId);
       }
     });
   }

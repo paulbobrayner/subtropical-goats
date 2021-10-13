@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { io } from 'socket.io-client';
+
 import ProductComponent from './ProductComponent';
 import ModalContainer from '../Modal/ModalContainer';
 import { getProduct, getReviews } from '../../api';
@@ -7,9 +9,11 @@ function ProductContainer() {
   const [modalOpen, setModalOpen] = useState(false);
   const [product, setProduct] = useState();
   const [reviews, setReviews] = useState();
-  const [postReviewSuccess, setPostReviewSuccess] = useState();
 
   const productId = 1;
+  const socket = io(process.env.SOCKET_URL, {
+    withCredentials: true,
+  });
 
   const fetchReviews = useCallback(() => {
     getReviews(productId).then((response) => {
@@ -30,18 +34,16 @@ function ProductContainer() {
     [productId, setProduct, getProduct]
   );
 
+  useEffect(() => {
+    socket.on('reviewsUpdate', (data) => {
+      console.log('updated review data-->', data);
+      setReviews(data);
+    });
+  }, [socket]);
+
   useEffect(function initReviews() {
     fetchReviews();
   }, []);
-
-  useEffect(
-    function reFetchReviews() {
-      if (postReviewSuccess) {
-        fetchReviews();
-      }
-    },
-    [postReviewSuccess]
-  );
 
   return (
     <>
@@ -54,7 +56,7 @@ function ProductContainer() {
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
         productId={productId}
-        setPostReviewSuccess={setPostReviewSuccess}
+        socket={socket}
       />
     </>
   );

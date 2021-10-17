@@ -9,6 +9,7 @@ function ProductContainer() {
   const [modalOpen, setModalOpen] = useState(false);
   const [product, setProduct] = useState();
   const [reviews, setReviews] = useState();
+  const [averageRating, setAverageRating] = useState();
 
   const productId = 1;
   const socket = io(process.env.SOCKET_URL, {
@@ -45,12 +46,27 @@ function ProductContainer() {
     fetchReviews();
   }, []);
 
+  useEffect(
+    function initAverageRating() {
+      if (reviews && reviews.length > 0) {
+        const total = reviews.reduce((a, b) => a + +b.rating, 0);
+        const average = total / reviews.length;
+
+        setAverageRating(average.toFixed(1));
+      }
+    },
+    [reviews, setAverageRating]
+  );
+
+  console.log('average', averageRating);
+
   return (
     <>
       <ProductComponent
         setModalOpen={setModalOpen}
         product={product}
         reviews={reviews}
+        averageRating={averageRating}
       />
       <ModalContainer
         modalOpen={modalOpen}

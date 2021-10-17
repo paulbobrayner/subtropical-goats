@@ -22,7 +22,7 @@ function ModalContainer({ modalOpen, setModalOpen, productId, socket }) {
       console.log('submitted', response);
       if (response.status === 201) {
         setModalOpen(false);
-        //socket.emit('submitReview', productId);
+        socket.emit('submitReview', productId);
       }
     });
   }

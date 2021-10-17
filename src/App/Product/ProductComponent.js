@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import StarsComponent from '../Stars/StarsComponent';
 import Review from './Review';
 
-function ProductComponent({ setModalOpen, product, reviews }) {
+function ProductComponent({ setModalOpen, product, reviews, averageRating }) {
   if (!product) {
     return <div>loading...</div>;
   }
@@ -21,9 +21,9 @@ function ProductComponent({ setModalOpen, product, reviews }) {
       <Title>{product?.name}</Title>
       <Header>
         <AverageWrap>
-          <AverageScore>3.8</AverageScore>
+          <AverageScore>{averageRating}</AverageScore>
           <AverageStars>
-            <StarsComponent rating={3.8} />
+            <StarsComponent rating={averageRating} />
           </AverageStars>
         </AverageWrap>
         <ButtonWrap>

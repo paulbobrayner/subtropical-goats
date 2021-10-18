@@ -43,6 +43,10 @@ const Wrap = styled.div`
   justify-content: center;
   margin: 120px auto;
   max-width: 450px;
+
+  @media (max-width: 575px) {
+    padding: 15px;
+  }
 `;
 
 const Title = styled.div`

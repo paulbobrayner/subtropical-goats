@@ -15,8 +15,8 @@ function ProductContainer() {
   const socket = io(process.env.SOCKET_URL, {
     reconnectionDelay: 1000,
     reconnection: true,
-    transports: ['websocket'],
     rejectUnauthorized: false,
+    withCredentials: true,
   });
 
   const fetchReviews = useCallback(() => {

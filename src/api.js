@@ -8,7 +8,7 @@ export const getProduct = async (productId) => {
 };
 
 export const getReviews = async (productId) => {
-  const { data } = await axios.get(`${base}/reviews/${productId}`);
+  const { data } = await axios.get(`${base}reviews/${productId}`);
   return data;
 };
 

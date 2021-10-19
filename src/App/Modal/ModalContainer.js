@@ -19,7 +19,6 @@ function ModalContainer({ modalOpen, setModalOpen, productId, socket }) {
     };
 
     postReview(reviewSubmission).then((response) => {
-      console.log('submitted', response);
       if (response.status === 201) {
         setModalOpen(false);
         socket.emit('submitReview', productId);

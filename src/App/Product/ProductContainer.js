@@ -13,7 +13,10 @@ function ProductContainer() {
 
   const productId = 1;
   const socket = io(process.env.SOCKET_URL, {
-    withCredentials: true,
+    reconnectionDelay: 1000,
+    reconnection: true,
+    transports: ['websocket'],
+    rejectUnauthorized: false,
   });
 
   const fetchReviews = useCallback(() => {
@@ -37,7 +40,6 @@ function ProductContainer() {
 
   useEffect(() => {
     socket.on('reviewsUpdate', (data) => {
-      console.log('updated review data-->', data);
       setReviews(data);
     });
   }, [socket]);
@@ -57,8 +59,6 @@ function ProductContainer() {
     },
     [reviews, setAverageRating]
   );
-
-  console.log('average', averageRating);
 
   return (
     <>

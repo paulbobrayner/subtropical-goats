@@ -16,7 +16,6 @@ function ProductContainer() {
     reconnectionDelay: 1000,
     reconnection: true,
     rejectUnauthorized: false,
-    transports: ['websocket'],
   });
 
   const fetchReviews = useCallback(() => {
